@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include "board.h"
+#include "screen.h"
 
 
 
@@ -86,6 +87,23 @@ int main() {
     printf("0, 0: %d\n", board.board[0][0].isAlive);
     simulate(&board);
     printf("0, 0: %d\n", board.board[0][0].isAlive);
+
+    printf("TEST\n");
+
+    const char * title = "test";
+    InitWindow(800, 600, title);
+    SetTargetFPS(60);
+
+    GolScreen screen;
+    init_screen(&screen, 800, 600, title);
+
+    while (!WindowShouldClose()) {
+        BeginDrawing();
+        ClearBackground(RAYWHITE);
+        EndDrawing();
+    }
+
+    CloseWindow();
 
 
     free_board(&board);
