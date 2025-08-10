@@ -1,3 +1,6 @@
+#ifndef BOARD_H
+#define BOARD_H
+
 #include <stdint.h>
 
 #define BOARD_SIZE 256
@@ -15,10 +18,16 @@ typedef struct Cell {
 typedef struct Board {
     Cell** board;
 
-    int32_t rows;
-    int32_t cols;
+    uint32_t rows;
+    uint32_t cols;
+
+    byte simulating;
 } Board;
 
 
 void init_board(Board* b, uint32_t rows, uint32_t cols);
 void free_board(Board* b);
+void update_board(Board* b);
+
+
+#endif

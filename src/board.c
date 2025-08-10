@@ -18,6 +18,8 @@ void init_board(Board* b, uint32_t rows, uint32_t cols) {
             b->board[i][j].isAlive = 0;
         }
     }
+
+    b->simulating = 0;
 }
 
 
