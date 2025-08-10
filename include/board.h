@@ -1,5 +1,4 @@
-#ifndef GOL_H
-#define GOL_H
+#include <stdint.h>
 
 #define BOARD_SIZE 256
 // number of cells is going to be board_size squared
@@ -16,12 +15,10 @@ typedef struct Cell {
 typedef struct Board {
     Cell** board;
 
-    uint32_t rows;
-    uint32_t cols;
+    int32_t rows;
+    int32_t cols;
 } Board;
 
 
-// the board will take up a very large amount of memory.. oh well
-// get it correct first and then optimize later
-
-#endif
+void init_board(Board* b, uint32_t rows, uint32_t cols);
+void free_board(Board* b);
