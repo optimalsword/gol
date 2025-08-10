@@ -125,6 +125,8 @@ int main() {
     init_screen(&screen, &board, 1200, 1200, title);
     SetTargetFPS(60);
 
+
+    float timer = GetTime();
     while (!WindowShouldClose()) {
         BeginDrawing();
         ClearBackground(RAYWHITE);
@@ -133,7 +135,10 @@ int main() {
         EndDrawing();
 
         if (board.simulating) {
-            simulate(&board);
+            if (GetTime() - timer >= 1.0f) {
+                simulate(&board);
+                timer = GetTime();
+            }
         }
 
         process_controls(&screen, &board);
