@@ -112,9 +112,15 @@ void simulate(Board* b) {
 
 
 
-int main() {
+int main(uint32_t argc, const char** argv) {
     Board board;
-    init_board(&board, 16, 16);
+    uint32_t board_size = 64;
+    if (argc > 1) {
+        char* endptr;
+        board_size = strtoul(argv[1], &endptr, 10);
+    }
+
+    init_board(&board, board_size, board_size);
 
     printf("TEST\n");
 
