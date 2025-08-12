@@ -1,3 +1,3 @@
 # gol
 
-## This license uses raylib, licensed under the zlib license
+## This project uses raylib, licensed under the zlib license
