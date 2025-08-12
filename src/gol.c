@@ -77,7 +77,6 @@ void simulate(Board* b) {
                     }
 
                     dying_cells[index] = cell;
-                    printf("not crashed yet %d\n", index);
                 }
                 // rule 3 is implicit
                 // each cell with 2 or three neihbors remains alive
