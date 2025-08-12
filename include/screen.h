@@ -5,6 +5,9 @@
 #include "raylib.h"
 #include "board.h"
 
+#define SIMULATE_CONTINUE 0
+#define SIMULATE_STEP 1
+
 
 typedef struct CellCoords {
     uint32_t x;
@@ -23,7 +26,7 @@ void draw_lines(GolScreen* screen, Board* b);
 
 void update_screen(GolScreen* screeen, Board* b);
 
-void process_controls(GolScreen* screen, Board* b);
+uint32_t process_controls(GolScreen* screen, Board* b);
 
 
 #endif

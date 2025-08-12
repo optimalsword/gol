@@ -92,7 +92,9 @@ void update_screen(GolScreen* screen, Board* b) {
 }
 
 
-void process_controls(GolScreen* screen, Board* b) {
+#define SIMULATE_CONTINUE 0
+#define SIMULATE_STEP 1
+uint32_t process_controls(GolScreen* screen, Board* b) {
     if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) {
         // update board and color in the screen
         // first, figure out which cell we are in
@@ -113,10 +115,8 @@ void process_controls(GolScreen* screen, Board* b) {
     } else if (IsKeyPressed(KEY_SPACE)) {
         // start simulation
         // TODO: find a way to decouple this
-        if (b->simulating) {
-            b->simulating = 0;
-        } else {
-            b->simulating = 1;
-        }
+        return SIMULATE_CONTINUE;
+    } else if (IsKeyPressed(KEY_RIGHT)) {
+        return SIMULATE_STEP;
     }
 }

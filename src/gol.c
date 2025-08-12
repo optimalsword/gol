@@ -115,9 +115,14 @@ void simulate(Board* b) {
 int main(uint32_t argc, const char** argv) {
     Board board;
     uint32_t board_size = 64;
+    float simulation_speed = 1.0f;
     if (argc > 1) {
         char* endptr;
         board_size = strtoul(argv[1], &endptr, 10);
+    }
+    if (argc > 2) {
+        char* endptr;
+        simulation_speed = strtof(argv[2], &endptr);
     }
 
     init_board(&board, board_size, board_size);
@@ -140,13 +145,28 @@ int main(uint32_t argc, const char** argv) {
         EndDrawing();
 
         if (board.simulating) {
-            if (GetTime() - timer >= 1.0f) {
+            if (GetTime() - timer >= simulation_speed) {
                 simulate(&board);
                 timer = GetTime();
             }
         }
 
-        process_controls(&screen, &board);
+        uint32_t control = process_controls(&screen, &board);
+        switch (control) {
+            case SIMULATE_STEP:
+                if (!board.simulating) {
+                    simulate(&board);
+                }
+                break;
+            case SIMULATE_CONTINUE:
+                if (board.simulating) {
+                    board.simulating = 0;
+                } else {
+                    board.simulating = 1;
+                }
+                break;
+        }
+
         update_screen(&screen, &board);
     }
 
