@@ -118,7 +118,11 @@ int main(uint32_t argc, const char** argv) {
     float simulation_speed = 1.0f;
     if (argc > 1) {
         char* endptr;
-        board_size = strtoul(argv[1], &endptr, 10);
+        int32_t temp = 0;
+        temp = strtol(argv[1], &endptr, 10);
+        if (temp > 0) {
+            board_size = temp;
+        }
     }
     if (argc > 2) {
         char* endptr;
