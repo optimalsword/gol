@@ -91,9 +91,6 @@ void update_screen(GolScreen* screen, Board* b) {
     }
 }
 
-
-#define SIMULATE_CONTINUE 0
-#define SIMULATE_STEP 1
 uint32_t process_controls(GolScreen* screen, Board* b) {
     if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) {
         // update board and color in the screen
@@ -113,10 +110,10 @@ uint32_t process_controls(GolScreen* screen, Board* b) {
         }
 
     } else if (IsKeyPressed(KEY_SPACE)) {
-        // start simulation
-        // TODO: find a way to decouple this
         return SIMULATE_CONTINUE;
-    } else if (IsKeyPressed(KEY_RIGHT)) {
+    } else if (IsKeyReleased(KEY_RIGHT)) {
         return SIMULATE_STEP;
     }
+
+    return SIMULATE_NOP;
 }

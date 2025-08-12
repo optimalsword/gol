@@ -7,6 +7,7 @@
 
 #define SIMULATE_CONTINUE 0
 #define SIMULATE_STEP 1
+#define SIMULATE_NOP 3
 
 
 typedef struct CellCoords {
